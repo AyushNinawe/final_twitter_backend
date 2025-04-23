@@ -9,15 +9,31 @@ import cors from "cors";
 dotenv.config({
     path:".env"
 })
-databaseConnection();
 const app =express();
-const corsOptions={
-    origin:"http://localhost:3000",
-    credentials:true
-}
-app.use(cors(corsOptions));
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://serene-daffodil-5eaf62.netlify.app'];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  credentials: true
+}));
 app.use(cookieParser()); // ✅ Middleware to read cookies
 app.use(express.json()); // Parses JSON data
+// databaseConnection();
+//
+// const corsOptions={
+//     origin:"http://localhost:3000",
+//     credentials:true
+// }
+// app.use(cors(corsOptions));
+
 // app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
 
 
