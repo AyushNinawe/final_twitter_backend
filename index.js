@@ -21,7 +21,8 @@ app.use(cookieParser());
 const allowedOrigins = [
   'http://localhost:3000',
   'https://serene-daffodil-5eaf62.netlify.app',
-  'https://incandescent-selkie-a51894.netlify.app'
+  'https://incandescent-selkie-a51894.netlify.app',
+  'https://twitterxclonex.netlify.app'
 ];
 
 app.use(cors({
